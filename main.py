@@ -1,5 +1,11 @@
 import pandas as pd
 
+def generate_alphabet(n):
+    alphabet = []
+    for i in range(n):
+        alphabet.append(chr(i + ord('a')))
+    return alphabet
+
 def binOr(a,b):
 # both a and b are bool variables
     # 1 1 - 1
@@ -51,5 +57,5 @@ def printTable(variableList,expressionList):
     print(table)
     pass
 
-
-printTable(["a","b"],[])
+nPremises = int(input("How many premises?"))
+printTable(generate_alphabet(nPremises),[])
