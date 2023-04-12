@@ -1,15 +1,6 @@
 import pandas as pd
+from binaryFunctions import binOr
 
-def binOr(a,b):
-# both a and b are bool variables
-    # 1 1 - 1
-    # 1 0 - 1
-    # 0 1 - 1
-    # 0 0 - 0
-    if (a or b ):
-        return True
-    else :
-        return False
 
 def trueFalseFill(len,total):
     tFS = ["T"]*len + ["F"]*len
@@ -17,10 +8,9 @@ def trueFalseFill(len,total):
     return tFS
 
 
-def exp_table( table1,table2,operation ):
-    #decorators go brrrrrrrr
-    
-    return operation(table1,table2)
+def genValueBin( valueFromTable1,valueFromTable2,operation ):
+    #This function takes a decorator an 
+    return operation(valueFromTable1,valueFromTable2)
 
 
 def printTable(variableList,expressionList):
@@ -51,5 +41,6 @@ def printTable(variableList,expressionList):
     print(table)
     pass
 
+if __name__ =="__main__":
+    printTable(["a","b"],[])
 
-printTable(["a","b"],[])
