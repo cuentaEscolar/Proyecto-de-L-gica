@@ -1,26 +1,26 @@
 import pandas as pd
+from binaryFunctions import binOr,binAnd,binThen
+from expressionHandling import expressionReader
 
-def binOr(a,b):
-# both a and b are bool variables
-    # 1 1 - 1
-    # 1 0 - 1
-    # 0 1 - 1
-    # 0 0 - 0
-    if (a or b ):
-        return True
-    else :
-        return False
 
 def trueFalseFill(len,total):
     tFS = ["T"]*len + ["F"]*len
     tFS = tFS * int(total/(2*len))
     return tFS
 
+def GetTablesFromExpression(expression):
+    pass
+    return [table1,table2,operator]
 
-def exp_table( table1,table2,operation ):
-    #decorators go brrrrrrrr
-    
-    return operation(table1,table2)
+def getTableBin(table1,table2,operation):
+    binBuffer = []
+    for index in range(len(table1)):
+        binBuffer.append([genValueBin(table1[index], table2[index], operation)])
+
+
+def genValueBin( valueFromTable1,valueFromTable2,operation ):
+    #This function takes a decorator an 
+    return operation(valueFromTable1,valueFromTable2)
 
 
 def printTable(variableList,expressionList):
@@ -34,14 +34,24 @@ def printTable(variableList,expressionList):
     # The array to be printed ought to have at least a column per variable
     # 2^n rows, and a column per expression
     varLen = len(variableList)
+    expLen = len(expressionList)
     rowNo = (2**len(variableList))
     indexG = [x+1 for x in range(rowNo)]
 
     trueFalseDictionary = {}
     for x in list(range(varLen)):
         trueFalseDictionary[variableList[x]] = trueFalseFill( 2**x ,rowNo)
-
     
+
+
+    #TODO generate the actual rows for the expressions
+    #plz do use the functions from the expression handling page thank you very much.
+    # for x in list(range(expLen)):
+
+
+
+    #     trueFalseDictionary[expressionList[x]] = getTableBin(table1, table2, operation)
+
     table = pd.DataFrame(trueFalseDictionary,columns=variableList, index=indexG)
 
 
@@ -51,5 +61,16 @@ def printTable(variableList,expressionList):
     print(table)
     pass
 
+if __name__ =="__main__":
+    # printTable(["a","b"],[])
 
-printTable(["a","b"],[])
+
+    def menuPrinting():
+        print("Por favor inserte el valor de la variable que desea añadir")
+
+    varTable = []
+    while True:
+        menuPrinting()
+        a = input()
+        varTable.append(a)
+        printTable(varTable,[])
