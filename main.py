@@ -1,7 +1,7 @@
 import pandas as pd
 from binaryFunctions import binOr,binAnd,binThen
 from expressionHandling import expressionReader
-
+import proposiciones
 
 def trueFalseFill(len,total):
     tFS = ["T"]*len + ["F"]*len
@@ -65,12 +65,11 @@ if __name__ =="__main__":
     # printTable(["a","b"],[])
 
 
-    def menuPrinting():
-        print("Por favor inserte el valor de la variable que desea añadir")
+    
 
-    varTable = []
-    while True:
-        menuPrinting()
-        a = input()
-        varTable.append(a)
-        printTable(varTable,[])
+    varTable = proposiciones.getVariables()
+    expressionTable = proposiciones.generateExpresions(varTable)
+    printTable(varTable, [])
+    print(expressionTable)
+
+    
