@@ -67,9 +67,9 @@ while (loop_acciones == True):
         if accion == 1:
             while True:
                 print("Ingrese la posicion del componente al que quiere aplicar esta accion\n")
-                indice = int(input()) + 1
+                indice = int(input()) - 1
                 alteracion = lista_componentes[indice]
-                lista_componentes[indice] = ~ alteracion
+                #lista_componentes[indice] = ~ alteracion
 
         elif accion == 2:
             while True:
