@@ -24,3 +24,17 @@ def binThen(a,b):
     if (a and (not b)):
         return False
     else: return True
+    
+def binBicond(a, b):
+    # both a and b are bool variables
+    if (a == b):
+        return True
+    else:
+        return False
+
+def binNeg(a):
+    # a is a bool variable
+    if (not a):
+        return True
+    else:
+        return False
