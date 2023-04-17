@@ -1,9 +1,9 @@
 
 def operatorStringGenerator(operatorValue):
-    # print("\t1) Conjuncion ^\n"
+    # print("\t1) Conjuncion ∧\n"
     #         "\t2) Disyuncion V\n"
-    #         "\t3) Implicacion ->\n"
-    #         "\t4) Dole Implicacion <->\n"
+    #         "\t3) Implicacion →\n"
+    #         "\t4) Dole Implicacion ↔\n"
     #         "\t5) Negacion ~\n"
     #         "\t6) Salir \n")
     if operatorValue == 1:
@@ -61,8 +61,13 @@ def expressionReader(expression):
         operator = binAnd
     elif "v" in expression:
         operator = binOr
-    else:
+    elif "→" in expression:
         operator = binThen
+    elif "↔" in expression:
+        operator = binBicond
+    elif "~" in expression:
+        operator = binNeg
+    else:
 
     # Find the table names
     parLoc = parenthesisStartEnd(expression)
