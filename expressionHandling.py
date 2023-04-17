@@ -1,13 +1,17 @@
 
 def operatorStringGenerator(operatorValue):
-#
-#   0---> ∧     for and
-#   1---> v     for or
-#   and thats it for the time being
+    # print("\t1) Conjuncion ^\n"
+    #         "\t2) Disyuncion V\n"
+    #         "\t3) Implicacion ->\n"
+    #         "\t4) Dole Implicacion <->\n"
+    #         "\t5) Negacion ~\n"
+    #         "\t6) Salir \n")
     if operatorValue==0:
         return "∧"
     elif operatorValue==1:
         return "v"
+    elif operatorValue==5:
+        return "~"
     else:
         pass
 def parenthesisGiver(expression):
@@ -15,7 +19,7 @@ def parenthesisGiver(expression):
 def expressionGenerator(value1,value2,operator):
     #the operator was obtained from a operatorValueOperation
     
-    return ""+parenthesisGiver(value1)+parenthesisGiver(value2)+operator
+    return ""+len(value1)*parenthesisGiver(value1)+operator+parenthesisGiver(value2)
 
 
 

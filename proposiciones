@@ -1,53 +1,62 @@
-
-loop_comp1 = True
-loop_comp = True
-loop_agregar = True
+import expressionHandling  as eH
 loop_acciones = True
-num_componentes = 0
 
-while (loop_comp1 == True):
-    print(f"Ingrese su componente nr. {num_componentes+1}")
-    comp1 = input().upper()
+def getVariables():
+
+    loop_comp1 = True
+    num_componentes = 0
+    loop_agregar = True
+    loop_comp = True
+    while (loop_comp1 == True):
+        print(f"Ingrese su componente nr. {num_componentes+1}")
+        comp1 = input().upper()
+        
+        if (('A' <= comp1 and comp1 <='Z')) :
+            loop_comp1 = False
+
+
+        else:
+            loop_comp1 = True
+
+
+
+    num_componentes += 1
+    lista_componentes = [comp1]         #La lista de componentes contiene 
+
+
+    while (loop_agregar == True):
+
+        try:    
+            print("Desea agregar otro componente? yes or no")
+            agregar = input().lower()
+
+            num_componentes += 1
+            
+            if agregar == "yes":
+            
+                while (loop_comp == True):
+                    print(f"Ingrese su componente nr. {num_componentes}")
+                    comp = input().upper()
+
+                    if (('A' <= comp and comp <= 'Z')):
+                        lista_componentes.append(comp)
+                        break
+
+                    else:
+                        loop_comp = False
+
+
+            elif agregar == "no":
+                loop_agregar = False
+
+        
+        except agregar != "yes" or agregar != "no":
+                continue
     
-    if (('A' <= comp1 and comp1 <='Z')) :
-        loop_comp1 = False
+    
+    return lista_componentes
 
-
-    else:
-        loop_comp1 = True
-
-
-num_componentes += 1
-lista_componentes = [comp1]
-
-
-while (loop_agregar == True):
-
-    try:    
-        print("Desea agregar otro componente? yes or no")
-        agregar = input().lower()
-        num_componentes += 1
-        
-        if agregar == "yes":
-        
-            while (loop_comp == True):
-                print(f"Ingrese su componente nr. {num_componentes}")
-                comp = input().upper()
-
-                if (('A' <= comp and comp <= 'Z')):
-                    lista_componentes.append(comp)
-                    break
-
-                else:
-                    loop_comp = False
-
-
-        elif agregar == "no":
-            loop_agregar = False
-
-
-    except agregar != "yes" or agregar != "no":
-            continue
+lista_componentes = getVariables()
 
 
 while (loop_acciones == True):
@@ -95,6 +104,9 @@ while (loop_acciones == True):
                 print("Ingrese la posicion del componente al que quiere aplicar esta accion\n")
                 indice = int(input()) - 1
                 alteracion = lista_componentes[indice]
+                lista_componentes.append(eH.expressionGenerator("", alteracion, eH.operatorStringGenerator(accion)))
+                
+
 
         elif accion == 6:
             break
@@ -104,6 +116,8 @@ while (loop_acciones == True):
 
     except ValueError:
         continue
+
+    print(lista_componentes)
 
 
 
