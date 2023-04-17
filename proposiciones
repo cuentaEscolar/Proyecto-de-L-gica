@@ -74,23 +74,27 @@ while (loop_acciones == True):
         elif accion == 2:
             while True:
                 print("Ingrese la posicion del componente al que quiere aplicar esta accion\n")
-                indice = int(input()) + 1
+                indice = int(input()) - 1
+                alteracion = lista_componentes[indice]
 
         elif accion == 3:
             while True:
                 print("Ingrese la posicion del componente al que quiere aplicar esta accion\n")
-                indice = int(input()) + 1
+                indice = int(input()) - 1
+                alteracion = lista_componentes[indice]
 
         elif accion == 4:
             while True:
                 print("Ingrese la posicion del componente al que quiere aplicar esta accion\n")
-                indice = int(input()) + 1
+                indice = int(input()) - 1
+                alteracion = lista_componentes[indice]
 
 
         elif accion == 5:
             while True:
                 print("Ingrese la posicion del componente al que quiere aplicar esta accion\n")
-                indice = int(input()) + 1
+                indice = int(input()) - 1
+                alteracion = lista_componentes[indice]
 
         elif accion == 6:
             break
