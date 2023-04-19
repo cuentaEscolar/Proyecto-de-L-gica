@@ -2,6 +2,8 @@ import pandas as pd
 from binaryFunctions import binOr,binAnd,binThen
 from expressionHandling import expressionReader
 import proposiciones
+from  expressionHandling import *
+
 
 def trueFalseFill(len,total):
     tFS = ["T"]*len + ["F"]*len
@@ -67,9 +69,11 @@ if __name__ =="__main__":
 
     
 
-    varTable = proposiciones.getVariables()
-    expressionTable = proposiciones.generateExpresions(varTable)
-    printTable(varTable, [])
-    print(expressionTable)
+    # varTable = proposiciones.getVariables()
+    # expressionTable = proposiciones.generateExpresions(varTable)
+    # printTable(varTable, [])
+    # print(expressionTable)
+
+    print(expressionReader((expressionGenerator("(x)v(y)", "b","v"))))
 
     
