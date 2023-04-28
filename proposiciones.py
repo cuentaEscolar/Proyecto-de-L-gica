@@ -61,71 +61,52 @@ def getVariables():
 def generateExpresions(lista_componentes):
     lista_expresiones =[]
     while (loop_acciones == True):
-        print(lista_componentes)
-        print("\t1) Conjuncion ^\n"
-            "\t2) Disyuncion V\n"
-            "\t3) Implicacion ->\n"
-            "\t4) Doble Implicacion <->\n"
-            "\t5) Negacion ~\n"
-            "\t6) Salir \n")
+        for index, element in enumerate(lista_componentes+lista_expresiones):
+            print(f"{index+1}:{element} ", end ="")
+        print("")
+        print(  "\t1) Conjuncion ^\n"
+                "\t2) Disyuncion V\n"
+                "\t3) Implicacion ->\n"
+                "\t4) Doble Implicacion <->\n"
+                "\t5) Negacion ~\n"
+                "\t6) Salir \n"
+                
+            )
 
 
-        print("Que desea hacer con sus componentes?\n")
+        print("¿Que desea hacer con sus componentes?\n")
         try:
             accion = int(input())
-            if True:
-                # if accion == 1:
-                #     while True:
-                #         print("Ingrese la posicion del componente al que quiere aplicar esta accion\n")
-                #         indice = int(input()) - 1
-                #         alteracion = lista_componentes[indice]
-                #         #lista_componentes[indice] = ~ alteracion
-
-                # elif accion == 2:
-                #     while True:
-                #         print("Ingrese la posicion del componente al que quiere aplicar esta accion\n")
-                #         indice = int(input()) - 1
-                #         alteracion = lista_componentes[indice]
-
-                # elif accion == 3:
-                #     while True:
-                #         print("Ingrese la posicion del componente al que quiere aplicar esta accion\n")
-                #         indice = int(input()) - 1
-                #         alteracion = lista_componentes[indice]
-
-                # elif accion == 4:
-                #     while True:
-                #         print("Ingrese la posicion del componente al que quiere aplicar esta accion\n")
-                #         indice = int(input()) - 1
-                #         alteracion = lista_componentes[indice]
+            
 
 
-                # elif accion == 5:
-                #     while True:
-                #         print("Ingrese la posicion del componente al que quiere aplicar esta accion\n")
-                #         indice = int(input()) - 1
-                #         alteracion = lista_componentes[indice]
-                #         lista_expresiones.append(eH.expressionGenerator("", alteracion, eH.operatorStringGenerator(accion)))
-                        
-                # elif accion == 6:
-                #     break
-                pass
             if accion==6: return lista_expresiones
             if accion!=5 :
                 print("Ingrese la posicion del primer componente\n")
                 comp1In = int(input()) - 1
-                comp1 = lista_componentes[comp1In]
+                if comp1In>=len(lista_componentes):
+                    # print(len(lista_componentes),comp1In-len(lista_componentes),lista_expresiones[0])
+                    comp1 = lista_expresiones[comp1In-len(lista_componentes)]
+                else:
+                    comp1 = lista_componentes[comp1In]
+                    
 
                 print("Ingrese la posicion del segundo componente\n")
                 comp2In = int(input()) - 1
-                comp2 = lista_componentes[comp2In]
+                if comp2In>=len(lista_componentes):
+                    comp2 = lista_expresiones[comp2In-len(lista_componentes)]
+                else:
+                    comp2 = lista_componentes[comp2In]
 
                 lista_expresiones.append(eH.expressionGenerator(comp1, comp2, eH.operatorStringGenerator(accion)))
             else:
                 print("Ingrese la posicion del componente\n")
-                indice = int(input()) - 1
-                alteracion = lista_componentes[indice]
-                lista_expresiones.append(eH.expressionGenerator("", alteracion, eH.operatorStringGenerator(accion)))
+                comp1In = int(input()) - 1
+                if comp1In>=len(lista_componentes):
+                    comp1 = lista_expresiones[comp1In-len(lista_componentes)]
+                else:
+                    comp1 = lista_componentes[comp1In]
+                lista_expresiones.append(eH.expressionGenerator("", comp1, eH.operatorStringGenerator(accion)))
         except ValueError:
             continue
 
@@ -134,6 +115,7 @@ def generateExpresions(lista_componentes):
     return lista_expresiones
 
 
-
+if __name__ == "__main__":
+    print(generateExpresions(['(Y)→(X)','(Z)v(X)']))
 
 
