@@ -10,6 +10,8 @@ def binOr(a,b):
         return False
 
 def binAnd(a,b):
+    
+
     if (a and b):
         return True
     else:
@@ -32,7 +34,7 @@ def binBicond(a, b):
     else:
         return False
 
-def binNeg(a):
+def binNeg(a,b):
     # a is a bool variable
     if (not a):
         return True

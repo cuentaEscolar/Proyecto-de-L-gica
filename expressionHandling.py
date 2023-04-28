@@ -22,8 +22,9 @@ def parenthesisGiver(expression):
     return "("+expression+")"
 def expressionGenerator(value1,value2,operator):
     #the operator was obtained from a operatorValueOperation
-    
-    return ""+len(value1)*parenthesisGiver(value1)+operator+parenthesisGiver(value2)
+    flag = 0
+    if len(value1)>0: flag=1
+    return ""+flag*parenthesisGiver(value1)+operator+parenthesisGiver(value2)
 
 
 
@@ -109,44 +110,22 @@ def genStartEndParenthesis(doubleArray):
 
 def expressionReader(expression):
 
-    #TODO!
-    if False:
-
-        # this should return the name of the first column, the second and the operator
-        #   like this [table1,table2,operator]
-        #   so that we may abuse our functions later
-            # Find the operator
-        # if "∧" in expression:
-        #     operator = binAnd
-        # elif "v" in expression:
-        #     operator = binOr
-        # elif "→" in expression:
-        #     operator = binThen
-        # elif "↔" in expression:
-        #     operator = binBicond
-        # elif "~" in expression:
-        #     operator = binNeg
-        # else:
-        #     return ["error"]
-        # Find the table names
-        pass
     
     # we cannot get the operator like we used to. Fortunately, we know where it is thanks to the parenthesis
     # we just need to get rid of the nors cuz they are asy and mess stuff up.
+
+    if expression[0] == "~":
+        return [expression[2:-1],binNeg]
+
     parLoc = genStartEndParenthesis(parStarEndIdentifier(expression))
-    print(parLoc,"parloc")
+
     columns = readInsideParenthesis(expression, parLoc)
+    print(columns)
     table1 = columns[0]
     table2 = columns[1]
-
-    # Generate the final expression string
-    # operatorString = operatorStringGenerator(operator.__name__[3:])
-    # operatorString = operatorStringGenerator(operator.__name__[3:])
     value1 = parenthesisGiver(table1)
     value2 = parenthesisGiver(table2)
     operator = 0
-    if expression[0] =="~" :
-        operator = binNeg(a)
     if "∧" == expression[parLoc[1]]:
         operator = binAnd
     elif "v" == expression[parLoc[1]]:
@@ -160,12 +139,14 @@ def expressionReader(expression):
     return [table1[1:-1], table2[1:-1], operator] 
 
 if __name__=="__main__":
-    parStarEndIdentifier(string="((AB)V(OP))V(RQ)")
-    genStartEndParenthesis(parStarEndIdentifier("((AB)V(OP))V(RQ)"))
-    a = expressionGenerator("", expressionGenerator("a", "b", operatorStringGenerator(3)),operatorStringGenerator(5))
-    print(a)
-    # print(expressionReader((a)))
 
-    a  = "((A↔B)∧(OvP))∧(R→Q)"
+    print(expressionGenerator('(Y)→(X)', '(Z)v(X)', "→"))
+    # parStarEndIdentifier(string="((AB)V(OP))V(RQ)")
+    # genStartEndParenthesis(parStarEndIdentifier("((AB)V(OP))V(RQ)"))
+    # a = expressionGenerator("", expressionGenerator("a", "b", operatorStringGenerator(3)),operatorStringGenerator(5))
+    # print(a)
+    # # print(expressionReader((a)))
+
+    a  = "~((Y)↔(Z))"
 
     print(expressionReader((a)))
