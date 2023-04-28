@@ -4,6 +4,22 @@ from expressionHandling import expressionReader
 import proposiciones
 from  expressionHandling import *
 
+def evaluate_logic(table, processedExpressions):
+    final_premises = pd.DataFrame()
+    last_array = processedExpressions[-1]
+    first_element = last_array[0]
+    second_element = last_array[1]
+    final_premises = pd.concat([table[first_element], table[second_element]], axis=1)
+    final_column = pd.DataFrame(table.iloc[:, -1])
+    final_premises = pd.concat([final_premises, final_column], axis=1)
+    critical_rows = final_premises[(final_premises[first_element] == True) & (final_premises[second_element] == True)]
+    print()
+    print(critical_rows)
+    if False in critical_rows.values:
+        print("invalid")
+    else:
+        print("valid")
+
 def translateTF(value):
     if value =="T":
         return True
@@ -15,8 +31,8 @@ def trueFalseFill(len,total):
     tFS = tFS * int(total/(2*len))
     return tFS
 
-def GetTablesFromExpression(expression):
-    return [table1,table2,operator]
+#def GetTablesFromExpression(expression):
+    #return [table1,table2,operator]
 
 def getTableBin(table1,table2,rowNo,operation):
     binBuffer = []
@@ -46,7 +62,7 @@ def printTable(variableList,expressionList):
     trueFalseDictionary = {}            #the dictionary where the truth "rows" are to be stored
     for x in list(range(varLen)):
         trueFalseDictionary[variableList[x]] = trueFalseFill( 2**x ,rowNo)
-    processedExpressions = []           # a list full of lists that look like [componentA, componentB, operation] # Hay problemas con la negación
+    processedExpressions = []           # a list full of lists that look like [componentA, componentB, operation]
     for expression in expressionList:
         processedExpressions.append(expressionReader(expression))
     for exprIndex, expression in enumerate((processedExpressions)):
@@ -61,7 +77,7 @@ def printTable(variableList,expressionList):
             componentA = expression[0]
             componentB = expression[1]
             operation = expression[2]
-        # print(expression)
+        print(expression)
         
         trueFalseDictionary[expressionList[exprIndex]]  = getTableBin(trueFalseDictionary[componentA], trueFalseDictionary[componentB], rowNo, operation)
 
@@ -76,14 +92,10 @@ def printTable(variableList,expressionList):
     table = pd.DataFrame(trueFalseDictionary,columns=(variableList.append(expressionList)), index=indexG)
 
     print(table)
+    
+    evaluate_logic(table, processedExpressions)
 
-    #TODO generate the actual rows for the expressions
-    #plz do use the functions from the expression handling page thank you very much.
-    # for x in list(range(expLen)):
-
-
-
-    #     trueFalseDictionary[expressionList[x]] = getTableBin(table1, table2, operation)
+    # trueFalseDictionary[expressionList[x]] = getTableBin(table1, table2, operation)
 
 
 
@@ -92,14 +104,13 @@ if __name__ =="__main__":
 
 
     
-
+    
     varTable = proposiciones.getVariables()
     expressionTable = proposiciones.generateExpresions(varTable)
     # expressionTable+=(proposiciones.generateExpresions(varTable+expressionTable))
     print(expressionTable)
     printTable(varTable, expressionTable)
-    # print(expressionTable)
 
-    # print(expressionReader((expressionGenerator("(x)v(y)", "b","v"))))
+
 
     

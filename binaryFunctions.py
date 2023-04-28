@@ -1,5 +1,5 @@
 def binOr(a,b):
-# both a and b are bool variables
+    # both a and b are bool variables
     # 1 1 - 1
     # 1 0 - 1
     # 0 1 - 1
@@ -10,8 +10,7 @@ def binOr(a,b):
         return False
 
 def binAnd(a,b):
-    
-
+    # both a and b are bool variables
     if (a and b):
         return True
     else:
