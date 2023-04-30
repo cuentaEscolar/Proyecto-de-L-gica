@@ -12,13 +12,17 @@ def evaluate_logic(table, processedExpressions):
     final_premises = pd.concat([table[first_element], table[second_element]], axis=1)
     final_column = pd.DataFrame(table.iloc[:, -1])
     final_premises = pd.concat([final_premises, final_column], axis=1)
-    critical_rows = final_premises[(final_premises[first_element] == True) & (final_premises[second_element] == True)]
+    critical_rows = final_premises[(final_premises[first_element].isin([True, 'True', 'T'])) & (final_premises[second_element].isin([True, 'True', 'T']))]
+
     print()
     print(critical_rows)
-    if False in critical_rows.values:
+
+    if critical_rows.isin(['F', 'False']).any().any():
         print("invalid")
     else:
         print("valid")
+
+    
 
 def translateTF(value):
     if value =="T":
