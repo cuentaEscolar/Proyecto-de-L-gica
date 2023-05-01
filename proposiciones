@@ -30,9 +30,10 @@ def getVariables():
             print("Desea agregar otro componente? yes or no")
             agregar = input().lower()
 
-            num_componentes += 1
+            
             
             if agregar == "yes":
+                num_componentes += 1
             
                 while (loop_comp == True):
                     print(f"Ingrese su componente nr. {num_componentes}")
@@ -61,10 +62,10 @@ lista_componentes = getVariables()
 
 while (loop_acciones == True):
     print(lista_componentes)
-    print("\t1) Conjuncion ^\n"
-          "\t2) Disyuncion V\n"
-          "\t3) Implicacion ->\n"
-          "\t4) Dole Implicacion <->\n"
+    print("\t1) Conjuncion ∧\n"
+          "\t2) Disyuncion v\n"
+          "\t3) Implicacion →\n"
+          "\t4) Dole Implicacion ↔\n"
           "\t5) Negacion ~\n"
           "\t6) Salir \n")
 
