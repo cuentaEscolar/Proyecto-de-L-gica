@@ -84,29 +84,31 @@ def generateExpresions(lista_componentes):
             if accion!=5 :
                 print("Ingrese la posicion del primer componente\n")
                 comp1In = int(input()) - 1
-                if comp1In>=len(lista_componentes):
-                    # print(len(lista_componentes),comp1In-len(lista_componentes),lista_expresiones[0])
-                    comp1 = lista_expresiones[comp1In-len(lista_componentes)]
-                else:
-                    comp1 = lista_componentes[comp1In]
-                    
+                if comp1In-len(lista_componentes)>0:
+                    if comp1In>=len(lista_componentes):
+                        # print(len(lista_componentes),comp1In-len(lista_componentes),lista_expresiones[0])
+                        comp1 = lista_expresiones[comp1In-len(lista_componentes)]
+                    else:
+                        comp1 = lista_componentes[comp1In]
+                        
 
-                print("Ingrese la posicion del segundo componente\n")
-                comp2In = int(input()) - 1
-                if comp2In>=len(lista_componentes):
-                    comp2 = lista_expresiones[comp2In-len(lista_componentes)]
-                else:
-                    comp2 = lista_componentes[comp2In]
+                    print("Ingrese la posicion del segundo componente\n")
+                    comp2In = int(input()) - 1
+                    if comp2In>=len(lista_componentes):
+                        comp2 = lista_expresiones[comp2In-len(lista_componentes)]
+                    else:
+                        comp2 = lista_componentes[comp2In]
 
-                lista_expresiones.append(eH.expressionGenerator(comp1, comp2, eH.operatorStringGenerator(accion)))
+                    lista_expresiones.append(eH.expressionGenerator(comp1, comp2, eH.operatorStringGenerator(accion)))
             else:
                 print("Ingrese la posicion del componente\n")
                 comp1In = int(input()) - 1
-                if comp1In>=len(lista_componentes):
-                    comp1 = lista_expresiones[comp1In-len(lista_componentes)]
-                else:
-                    comp1 = lista_componentes[comp1In]
-                lista_expresiones.append(eH.expressionGenerator("", comp1, eH.operatorStringGenerator(accion)))
+                if comp1In-len(lista_componentes)>0:
+                    if comp1In>=len(lista_componentes):
+                        comp1 = lista_expresiones[comp1In-len(lista_componentes)]
+                    else:
+                        comp1 = lista_componentes[comp1In]
+                    lista_expresiones.append(eH.expressionGenerator("", comp1, eH.operatorStringGenerator(accion)))
         except ValueError:
             continue
 
