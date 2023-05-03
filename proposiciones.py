@@ -1,6 +1,11 @@
 import expressionHandling  as eH
 loop_acciones = True
 
+# def tFTransform (aBool):    
+#     if aBool:
+#         return "T"
+
+
 def getVariables():
 
     loop_comp1 = True
@@ -84,7 +89,7 @@ def generateExpresions(lista_componentes):
             if accion!=5 :
                 print("Ingrese la posicion del primer componente\n")
                 comp1In = int(input()) - 1
-                if comp1In-len(lista_componentes)>0:
+                if comp1In<=len(lista_componentes+lista_expresiones):
                     if comp1In>=len(lista_componentes):
                         # print(len(lista_componentes),comp1In-len(lista_componentes),lista_expresiones[0])
                         comp1 = lista_expresiones[comp1In-len(lista_componentes)]
@@ -103,7 +108,7 @@ def generateExpresions(lista_componentes):
             else:
                 print("Ingrese la posicion del componente\n")
                 comp1In = int(input()) - 1
-                if comp1In-len(lista_componentes)>0:
+                if comp1In-len(lista_componentes)>0 or comp1In<=(len(lista_componentes)):
                     if comp1In>=len(lista_componentes):
                         comp1 = lista_expresiones[comp1In-len(lista_componentes)]
                     else:

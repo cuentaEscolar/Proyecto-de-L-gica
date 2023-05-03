@@ -3,9 +3,26 @@ from binaryFunctions import binOr,binAnd,binThen
 from expressionHandling import expressionReader
 import proposiciones
 from  expressionHandling import *
+def evaluate_logic(table, processedExpressions):
+    final_premises = pd.DataFrame()
+    last_array = processedExpressions[-1]
+    first_element = last_array[0]
+    second_element = last_array[1]
+    final_premises = pd.concat([table[first_element], table[second_element]], axis=1)
+    final_column = pd.DataFrame(table.iloc[:, -1])
+    final_premises = pd.concat([final_premises, final_column], axis=1)
+    critical_rows = final_premises[(final_premises[first_element].isin([True, 'True', 'T'])) & (final_premises[second_element].isin([True, 'True', 'T']))]
+
+    print()
+    print(critical_rows)
+
+    if critical_rows.isin(['F', 'False']).any().any():
+        print("invalid")
+    else:
+        print("valid")
 
 def translateTF(value):
-    if value =="T":
+    if value =="T" or value==True:
         return True
     else : return False
 
@@ -76,7 +93,7 @@ def printTable(variableList,expressionList):
     table = pd.DataFrame(trueFalseDictionary,columns=(variableList.append(expressionList)), index=indexG)
 
     print(table)
-
+    evaluate_logic(table, processedExpressions)
     #TODO generate the actual rows for the expressions
     #plz do use the functions from the expression handling page thank you very much.
     # for x in list(range(expLen)):
@@ -96,7 +113,7 @@ if __name__ =="__main__":
     varTable = proposiciones.getVariables()
     expressionTable = proposiciones.generateExpresions(varTable)
     # expressionTable+=(proposiciones.generateExpresions(varTable+expressionTable))
-    print(expressionTable)
+    # print(expressionTable)
     printTable(varTable, expressionTable)
     # print(expressionTable)
 
